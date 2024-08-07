@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="registration.css">
+    <title>Mulah Technologies</title>
+</head>
+<body>
+    <div class="header">
+        <h1>MULAH</h1>
+    </div>
+
+    <div class="container">
+        <div class="container-header">
+            <h2>Registration</h2>
+        </div>
+        <div class="description">
+            <p>Please fill up your details.</p>
+        </div>
+    </div>
+
+    <div class="form">
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="name">Name</label><br>
+                <input type="text" id="name" name="name" placeholder="Enter name" required>
+            </div>
+            <div class="form-group birthday-form">
+                <div class="form-group">
+                    <label for="day">Day</label>
+                    <input type="number" id="day" name="day" min="1" max="31" placeholder="DD" required>
+                </div>
+                <div class="form-group">
+                    <label for="month">Month</label>
+                    <input type="number" id="month" name="month" min="1" max="12" placeholder="MM" required>
+                </div>
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <input type="number" id="year" name="year" min="1900" max="2100" placeholder="YYYY" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label><br>
+                <input type="email" id="email" name="email" placeholder="Email Address" required>
+                <input type="checkbox" id="no_email" name="no_email">
+                <label for="no_email">No email</label>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="submit-button">Continue</button>
+            </div>
+        </form>
+    </div>
+
+    <footer>
+        <p>Powered by <a href="https://MulahRewards.com">MulahRewards.com</a></p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('registration-form');
+            const submitButton = document.getElementById('submit-button');
+
+            form.addEventListener('submit', (event) => {
+                // Check if form is valid before handling submission
+                if (!form.checkValidity()) {
+                    event.preventDefault(); // Prevent default form submission
+                    form.reportValidity(); // Show browser's validation messages
+                } else {
+                    // Collect form data
+                    const name = form.querySelector('#name').value;
+                    const day = form.querySelector('#day').value;
+                    const month = form.querySelector('#month').value;
+                    const year = form.querySelector('#year').value;
+                    const email = form.querySelector('#email').value;
+                    const noEmail = form.querySelector('#no_email').checked;
+
+                    // Validate email format if provided
+                    let errors = [];
+                    if (email && !validateEmail(email)) {
+                        errors.push('Invalid email address.');
+                    }
+
+                    if (errors.length > 0) {
+                        alert(errors.join('\n'));
+                    } else {
+                        // Form is valid, handle submission
+                        alert(`Name: ${name}\nDate of Birth: ${day}/${month}/${year}\nEmail: ${email}\nNo email: ${noEmail}`);
+                        // Optionally, submit the form data using AJAX or other methods
+                    }
+                }
+            });
+
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+        });
+    </script>
+</body>
+</html>

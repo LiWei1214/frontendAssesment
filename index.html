@@ -1,0 +1,75 @@
+<!-- Page 1: Form Entry Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Mulah Technologies</title>
+</head>
+<body>
+    <div class="header">
+        <h1>MULAH</h1>
+    </div>
+
+    <div class="container">
+        <div class="container-header">
+            <h2>Hello, Welcome !</h2>
+        </div>
+        <div class="description">
+            <p>Check Your Loyalty Points & Rewards</p>
+        </div>
+    </div>
+
+    <div class="container_2">
+        <label for="Country_Code"></label>
+        <select name="Country_Code" id="Country_Code">
+            <option value="MY">+60</option>
+            <option value="SG">+65</option>
+        </select>
+        <input type="tel" name="phone" id="phone" placeholder="Enter your mobile number" required>
+    </div>
+
+    <div class="check-button">
+        <button id="check-button">
+            <p>Check Loyalty Points</p>
+        </button>
+    </div>
+
+    <footer>
+        <p>Powered by <a href="https://MulahRewards.com">MulahRewards.com</a></p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkButton = document.getElementById('check-button');
+            const phoneInput = document.getElementById('phone');
+            const countryCodeSelect = document.getElementById('Country_Code');
+
+            checkButton.addEventListener('click', () => {
+                const phone = phoneInput.value.trim();
+                const countryCode = countryCodeSelect.value;
+                
+                if (!phone) {
+                    alert('Please enter your mobile number.');
+                    return;
+                }
+
+                // Validate phone number format
+                const phonePattern = /^[0-9]{7,15}$/; // Adjust pattern as needed
+                if (!phonePattern.test(phone)) {
+                    alert('Please enter a valid mobile number.');
+                    return;
+                }
+
+                // Save to localStorage
+                localStorage.setItem('countryCode', countryCode);
+                localStorage.setItem('phone', phone);
+                
+                // Redirect to the summary page
+                window.location.href = 'summary.html';
+            });
+        });
+    </script>
+</body>
+</html>

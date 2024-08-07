@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Summary</title>
+</head>
+<body>
+    <div class="header">
+        <h1>Summary</h1>
+    </div>
+
+    <div class="container">
+        <div class="container-header">
+            <h2>Your Information</h2>
+        </div>
+        <div class="description">
+            <p>Here is the information you provided:</p>
+        </div>
+    </div>
+
+    <div class="summary-info">
+        <p id="summary-name"></p>
+        <p id="summary-birthday"></p>
+        <p id="summary-country-code"></p>
+        <p id="summary-phone"></p>
+        <p id="summary-email"></p>
+        <p id="summary-no-email"></p>
+    </div>
+
+    <footer>
+        <p>Powered by <a href="https://MulahRewards.com">MulahRewards.com</a></p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const name = localStorage.getItem('name');
+            const birthday = localStorage.getItem('birthday');
+            const countryCode = localStorage.getItem('countryCode');
+            const phone = localStorage.getItem('phone');
+            const email = localStorage.getItem('email');
+            const noEmail = localStorage.getItem('noEmail') === 'true';
+
+            document.getElementById('summary-name').textContent = `Name: ${name || 'N/A'}`;
+            document.getElementById('summary-birthday').textContent = `Birthday: ${birthday || 'N/A'}`;
+            document.getElementById('summary-country-code').textContent = `Country Code: ${countryCode || 'N/A'}`;
+            document.getElementById('summary-phone').textContent = `Phone Number: ${phone || 'N/A'}`;
+            document.getElementById('summary-email').textContent = `Email: ${email || 'N/A'}`;
+            document.getElementById('summary-no-email').textContent = `No Email: ${noEmail ? 'Yes' : 'No'}`;
+        });
+    </script>
+</body>
+</html>
